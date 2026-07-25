@@ -1,0 +1,42 @@
+{% extends 'boutique/base.html' %}
+
+{% block title %}A propos{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">A propos de nous</h1>
+
+<p class="fs-5 text-muted mb-4">
+    Bienvenue sur Ma Boutique ! Nous proposons une sélection de produits de qualité,
+    livrés rapidement et à prix accessibles.
+</p>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-award fs-1 text-primary mb-3"></i>
+                <h5>Qualité garantie</h5>
+                <p class="text-muted small">Des produits sélectionnés avec soin.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-truck fs-1 text-primary mb-3"></i>
+                <h5>Livraison rapide</h5>
+                <p class="text-muted small">Reçois ta commande en un rien de temps.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-headset fs-1 text-primary mb-3"></i>
+                <h5>Service client</h5>
+                <p class="text-muted small">Une équipe à ton écoute, 7j/7.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

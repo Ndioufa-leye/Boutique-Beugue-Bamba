@@ -1,0 +1,53 @@
+{% extends 'boutique/base.html' %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Contactez-nous</h1>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h6 class="text-uppercase fw-bold mb-3">Nos coordonnées</h6>
+                <p class="d-flex align-items-center mb-3">
+                    <i class="bi bi-telephone-fill fs-5 text-primary me-2"></i>
+                    77 604 64 15
+                </p>
+                <p class="d-flex align-items-center mb-3">
+                    <i class="bi bi-envelope-fill fs-5 text-primary me-2"></i>
+                    contact@maboutique.com
+                </p>
+                <p class="d-flex align-items-center">
+                    <i class="bi bi-geo-alt-fill fs-5 text-primary me-2"></i>
+                    Diamniadio, Dakar, Sénégal
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-uppercase fw-bold mb-3">Envoyez-nous un message</h6>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Nom</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

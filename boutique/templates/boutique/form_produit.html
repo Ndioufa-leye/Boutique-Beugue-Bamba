@@ -1,0 +1,15 @@
+{% extends 'boutique/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<h1 class="mb-4">Nouveau produit</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+    <a href="{% url 'liste' %}" class="btn btn-secondary mt-3">Annuler</a>
+</form>
+
+{% endblock %}

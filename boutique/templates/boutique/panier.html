@@ -1,0 +1,54 @@
+{% extends 'boutique/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h1 class="mb-4">Mon panier</h1>
+
+{% if panier %}
+<table class="table align-middle">
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in panier %}
+        <tr>
+            <td>{{ item.produit.nom }}</td>
+            <td>{{ item.prix }} FCFA</td>
+            <td>{{ item.quantite }}</td>
+            <td>{{ item.total }} FCFA</td>
+            <td>
+                <form method="post" action="{% url 'supprimer_du_panier' item.produit.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">Retirer</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between align-items-center mt-4">
+    <h4>Total : {{ panier.get_total }} FCFA</h4>
+    <div class="d-flex gap-2">
+        <form method="post" action="{% url 'vider_panier' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">Vider le panier</button>
+        </form>
+        <a href="{% url 'liste' %}" class="btn btn-secondary">Continuer mes achats</a>
+        <a href="{% url 'commande' %}" class="btn btn-success">
+            Passer la commande <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+{% else %}
+<p class="text-muted">Ton panier est vide.</p>
+<a href="{% url 'liste' %}" class="btn btn-primary">Voir les produits</a>
+{% endif %}
+{% endblock %}

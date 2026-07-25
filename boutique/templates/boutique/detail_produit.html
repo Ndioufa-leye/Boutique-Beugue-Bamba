@@ -1,0 +1,43 @@
+{% extends 'boutique/base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-5 mb-4">
+    {% if produit.image %}
+      <img src="{{ produit.image.url }}" alt="{{ produit.nom }}" class="img-fluid rounded shadow-sm">
+    {% else %}
+      <div class="bg-light rounded d-flex align-items-center justify-content-center" style="height: 280px;">
+        <span class="text-muted">Aucune image</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="col-md-7">
+    <h1 class="mb-3">{{ produit.nom }}</h1>
+    <p class="fs-4 text-primary fw-bold mb-2">{{ produit.prix }} €</p>
+    <p class="mb-3">
+      {% if produit.stock > 0 %}
+        <span class="badge bg-success">En stock : {{ produit.stock }}</span>
+      {% else %}
+        <span class="badge bg-danger">Rupture de stock</span>
+      {% endif %}
+    </p>
+    <p class="text-muted">{{ produit.description }}</p>
+    <p class="small text-muted">Ajouté le {{ produit.created_at|date:"d/m/Y à H:i" }}</p>
+
+    <div class="d-flex gap-2 mt-4">
+        <!-- tes boutons éventuels -->
+         <div class="d-flex gap-2 mt-4">
+    <a href="{% url 'liste' %}" class="btn btn-secondary">
+        ← Voir la liste des produits
+    </a>
+    <a href="{% url 'modifier' produit.pk %}" class="btn btn-warning">Modifier</a>
+    <a href="{% url 'supprimer' produit.pk %}" class="btn btn-danger">Supprimer</a>
+</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}          ← ✅ le block se termine ICI, après tout le contenu
