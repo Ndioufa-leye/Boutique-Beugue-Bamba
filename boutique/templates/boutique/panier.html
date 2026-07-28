@@ -20,7 +20,19 @@
         <tr>
             <td>{{ item.produit.nom }}</td>
             <td>{{ item.prix }} FCFA</td>
-            <td>{{ item.quantite }}</td>
+            <td>
+                <div class="d-flex align-items-center gap-2">
+                    <form method="post" action="{% url 'diminuer_quantite' item.produit.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">−</button>
+                    </form>
+                    <span>{{ item.quantite }}</span>
+                    <form method="post" action="{% url 'augmenter_quantite' item.produit.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                    </form>
+                </div>
+            </td>
             <td>{{ item.total }} FCFA</td>
             <td>
                 <form method="post" action="{% url 'supprimer_du_panier' item.produit.pk %}">

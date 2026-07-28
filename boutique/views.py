@@ -160,3 +160,15 @@ def inscription(request):
     else:
         form = UserCreationForm()
     return render(request, 'boutique/inscription.html', {'form': form})
+def augmenter_quantite(request, pk):
+    produit = get_object_or_404(Produit, pk=pk)
+    panier = Panier(request)
+    panier.augmenter(produit)
+    return redirect('panier')
+
+
+def diminuer_quantite(request, pk):
+    produit = get_object_or_404(Produit, pk=pk)
+    panier = Panier(request)
+    panier.diminuer(produit)
+    return redirect('panier')

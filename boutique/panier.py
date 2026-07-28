@@ -20,6 +20,19 @@ class Panier:
                 'prix': str(produit.prix),
             }
         self.sauvegarder()
+    def augmenter(self, produit):
+        produit_id = str(produit.id)
+        if produit_id in self.panier:
+            self.panier[produit_id]['quantite'] += 1
+            self.sauvegarder()
+
+    def diminuer(self, produit):
+        produit_id = str(produit.id)
+        if produit_id in self.panier:
+            self.panier[produit_id]['quantite'] -= 1
+            if self.panier[produit_id]['quantite'] <= 0:
+                del self.panier[produit_id]
+            self.sauvegarder()    
 
     def sauvegarder(self):
         self.session.modified = True
